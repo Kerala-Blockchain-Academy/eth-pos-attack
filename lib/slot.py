@@ -19,7 +19,7 @@ class Slot:
             #if no block were found upvote the previous block
             print('vote for parent')
             cls.peer.chain[-1]['validated'].append(cls.peer.sport)
-            cls.peer.cast_vote()
+            cls.peer.cast_vote(cls.peer.chain[-1]['header']['hash'])
 
         cls.second+=1
         if cls.peer.sport == 5000 and cls.second==2:
