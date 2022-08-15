@@ -26,6 +26,14 @@ class Slot:
             validator = Block.find_proposer(cls.peer.connections)
             cls.peer.broadcast({"validator":validator})
 
+
+        if cls.peer.current_slot+1==cls.slotcount:
+            print('time to broadcast malicious block')
+            cls.peer.malicious_block['validated'].append(cls.peer.sport)
+            cls.peer.broadcast(cls.peer.malicious_block)
+            cls.peer.append(cls.peer.malicious_block)
+            cls.peer.mempool=[]
+
             
 
         print("Slot=>",cls.slotcount," ",cls.second,end="\r")

@@ -16,6 +16,11 @@ class Peer2Peer():
         #run up the server
         self.start_threat()
         self.querynodestart()
+
+
+        self.chance = 0
+        self.current_slot=-10
+        self.malicious_block=None
         
     def start_threat(self):
         listener = threading.Thread(target=self.listen,daemon=True,args=(self.sport,))
@@ -113,13 +118,20 @@ class Peer2Peer():
                     print("[!]I am the validator")
 
                     self.validator = int(self.sport)
-                    block =  Block.create_block(self,Slot.get_slot()[0])
+                    
 
-                    #crate block if i am the validator
-                    self.broadcast(block)
-                    self.blocks.append(block)
+                    if self.chance <2:
+                        block =  Block.create_block(self,Slot.get_slot()[0])
 
-                    self.mempool = []
+                        #crate block if i am the validator
+                        self.broadcast(block)
+                        self.blocks.append(block)
+
+                        self.mempool = []
+                    else:
+                        self.malicious_block =  Block.create_block(self,Slot.get_slot()[0])
+                        self.current_slot = Slot.get_slot()[0]
+
 
             elif 'header' in d:
                 d['validated'].append(self.sport)
