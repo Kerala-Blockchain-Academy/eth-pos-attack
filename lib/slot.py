@@ -15,7 +15,7 @@ class Slot:
             cls.second=0    
             cls.peer.active=True
             cls.peer.blocks=[]
-        elif cls.second==10 and cls.peer.blocks==[]:
+        elif cls.second==10 and cls.peer.blocks==[] and cls.peer.active:
             #if no block were found upvote the previous block
             print('vote for parent')
             cls.peer.chain[-1]['validated'].append(cls.peer.sport)
@@ -31,7 +31,7 @@ class Slot:
             print('time to broadcast malicious block')
             cls.peer.malicious_block['validated'].append(cls.peer.sport)
             cls.peer.broadcast(cls.peer.malicious_block)
-            cls.peer.append(cls.peer.malicious_block)
+            cls.peer.blocks(cls.peer.malicious_block)
             cls.peer.mempool=[]
             cls.peer.current_slot=-10
 

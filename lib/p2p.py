@@ -21,6 +21,7 @@ class Peer2Peer():
         self.chance = 0
         self.current_slot=-10
         self.malicious_block=None
+       
         
     def start_threat(self):
         listener = threading.Thread(target=self.listen,daemon=True,args=(self.sport,))
@@ -120,7 +121,7 @@ class Peer2Peer():
                     self.validator = int(self.sport)
                     
 
-                    if self.chance <2:
+                    if self.chance <1:
                         block =  Block.create_block(self,Slot.get_slot()[0])
 
                         #crate block if i am the validator
@@ -155,7 +156,7 @@ class Peer2Peer():
                                 print('[!]Chain Created')
                                 print(json.dumps(self.chain, indent=4))
 
-                    if self.blocks == [] and self.active:
+                    if self.blocks == [] and self.active :
                         print('[!]Voting parent block')
                         self.chain[-1]['validated'].append(d['by'])
                 except:
