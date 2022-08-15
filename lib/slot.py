@@ -31,7 +31,7 @@ class Slot:
             print('time to broadcast malicious block')
             cls.peer.malicious_block['validated'].append(cls.peer.sport)
             cls.peer.broadcast(cls.peer.malicious_block)
-            cls.peer.blocks(cls.peer.malicious_block)
+            cls.peer.blocks.append(cls.peer.malicious_block)
             cls.peer.mempool=[]
             cls.peer.current_slot=-10
 
