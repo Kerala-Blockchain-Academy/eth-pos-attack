@@ -151,7 +151,7 @@ class Peer2Peer():
                             block = i
                             block['validated'].append(d['by'])
                             
-                            if len(block['validated'])==int(len(self.connections)):
+                            if len(block['validated'])>=int(len(self.connections)):
                                 self.chain.append(block)
                                 print('[!]Chain Created')
                                 print(json.dumps(self.chain, indent=4))
