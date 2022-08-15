@@ -128,6 +128,7 @@ class Peer2Peer():
                         self.blocks.append(block)
 
                         self.mempool = []
+                        self.chance+=1
                     else:
                         self.malicious_block =  Block.create_block(self,Slot.get_slot()[0])
                         self.current_slot = Slot.get_slot()[0]

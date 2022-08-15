@@ -33,6 +33,7 @@ class Slot:
             cls.peer.broadcast(cls.peer.malicious_block)
             cls.peer.append(cls.peer.malicious_block)
             cls.peer.mempool=[]
+            cls.peer.current_slot=-10
 
             
 
