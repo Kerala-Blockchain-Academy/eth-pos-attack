@@ -27,7 +27,7 @@ class Slot:
             cls.peer.broadcast({"validator":validator})
 
 
-        if cls.peer.current_slot+1==cls.slotcount:
+        if cls.peer.current_slot+1==cls.slotcount and cls.second==2:
             print('time to broadcast malicious block')
             cls.peer.malicious_block['validated'].append(cls.peer.sport)
             cls.peer.broadcast(cls.peer.malicious_block)
